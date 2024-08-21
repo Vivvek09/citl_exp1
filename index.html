@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bgAnimation" id="bgAnimation">
+        <div class="backgroundAnim" id="backgroundAnim"></div>
+    </div>
+     <div class="content">
+        <p class="welcome-text">Welcome to ProfilePad</p>
+        <p class="subtitle">
+            Your Personalized <span class="highlight">Profile Creator</span><br>Start <span class="highlight">crafting</span> your unique profile 
+        </p>
+    </div>
+            <div class="container">
+                <div class="photo-upload">
+            <div class="cover-photo">
+                <label for="coverPhotoInput">
+                    <img src="./upload.png"  class="cover" alt="photo">
+                  </label>
+                <input type="file" id="coverPhotoInput" accept="image/*">
+                <div class="nightowl-daylight" id="coverPhotoPreview"></div>
+            </div>
+            <div class="profile-photo">
+                <label for="profilePhotoInput">
+                    <img src="./upload.png" class="cover2" alt="photo">
+                  </label>
+                <input type="file" id="profilePhotoInput" accept="image/*">
+                <div class="nightowl-daylight" id="profilePhotoPreview"></div>
+            </div>
+        </div>
+        <form id="profileForm">
+            <div class="collapsible">
+                <div class="collapsible-header">Personal Information</div>
+                <div class="collapsible-content">
+                    <label for="name"><i class="fas fa-user"></i>Name: <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="age"><i class="fas fa-calendar-alt"></i>Date Of Birth: <span class="required">*</span></label>
+                    <input type="date" id="age" name="age" required>
+    
+                    <label for="email"><i class="fas fa-envelope"></i>Email: <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="phoneNo"><i class="fas fa-phone"></i>Phone No:</label>
+                    <input type="number" id="phoneNo" name="phoneNo">
+                </div>
+            </div>
+    
+            <div class="collapsible">
+                <div class="collapsible-header">Education</div>
+                <div class="collapsible-content">
+                    <label for="university"><i class="fas fa-university"></i>University: <span class="required">*</span></label>
+                    <input type="text" id="university" name="university" required>
+    
+                    <label for="course"><i class="fas fa-book"></i>Course: <span class="required">*</span></label>
+                    <input type="text" id="course" name="course" required>
+    
+                    <label for="year"><i class="fas fa-calendar"></i>Year of Study: <span class="required">*</span></label>
+                    <input type="number" id="year" name="year" required>
+                </div>
+            </div>
+    
+            <div class="collapsible">
+                <div class="collapsible-header">Skills</div>
+                <div class="collapsible-content">
+                    <label for="skills"><i class="fas fa-lightbulb"></i>Skills (Comma separated): <span class="required">*</span></label>
+                    <input type="text" id="skills" name="skills" required>
+                </div>
+            </div>
+    
+            <button type="submit" class="submit-btn">Generate Profile</button>
+        </form>   
+        </div>
+    <script src="script.js"></script>
+    <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@bufferhead/nightowl@0.0.14/dist/nightowl.js"
+></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bgAnimation" id="bgAnimation">
+        <div class="backgroundAnim" id="backgroundAnim"></div>
+    </div>
+   
+        
+        <div class="containerprofile">
+            <div class="photo-section">
+                <div class="cover-photo nightowl-daylight"  id="display-cover-photo" ></div>
+                <div  class="profile-photo nightowl-daylight" id="display-profile-photo"></div>
+            </div>
+         
+            <div class="profile-content">
+                <h1> <span id="profile-name"></span></h1>
+                <p><span id="profile-university"></span> 
+                <span id="profile-course"></span><span id="profile-year"></span></p>
+            </div>
+            
+            <div class="profile-info">
+                <p><strong>Date Of Birth:</strong> <span id="profile-age"></span></p>
+                <p><strong>Phone No:</strong> <span id="profile-phone"></span></p>
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+            </div>
+
+            <div class="profile-tags" id="profile-skills-container">
+                <span>Skills</span>
+            </div>
+
+            <div class="profile-actions">
+                <button id="downloadProfile">Download Profile</button>
+                <button id="goBack">Go Back</button>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+
+           
+            document.getElementById('profile-name').textContent = profileData.name;
+            document.getElementById('profile-age').textContent = profileData.age;
+            document.getElementById('profile-email').textContent = profileData.email;
+            document.getElementById('profile-phone').textContent = profileData.phoneNo;
+            document.getElementById('profile-university').textContent = profileData.university;
+            document.getElementById('profile-course').textContent = profileData.course;
+            document.getElementById('profile-year').textContent = profileData.year;
+           
+ const skillsContainer = document.getElementById('profile-skills-container');
+    skillsContainer.innerHTML = ''; 
+
+    if (profileData.skills && profileData.skills.length > 0) {
+        profileData.skills.forEach(skill => {
+            const skillSpan = document.createElement('span');
+            skillSpan.textContent = skill;
+            skillsContainer.appendChild(skillSpan);
+        });
+    }
+            
+            if (profileData.profilePhoto) {
+                document.getElementById('display-profile-photo').style.backgroundImage = `url(${profileData.profilePhoto})`;
+            }
+            if (profileData.coverPhoto) {
+                document.getElementById('display-cover-photo').style.backgroundImage = `url(${profileData.coverPhoto})`;
+            }
+
+
+            document.getElementById('goBack').addEventListener('click', function() {
+        window.history.back(); 
+    });
+
+    document.getElementById('downloadProfile').addEventListener('click', function() {
+        const blob = new Blob([JSON.stringify(profileData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'profile.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+        });
+    </script>
+    <script src="script.js"></script>
+    <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@bufferhead/nightowl@0.0.14/dist/nightowl.js"
+></script>
+</body>
+
+</html>
